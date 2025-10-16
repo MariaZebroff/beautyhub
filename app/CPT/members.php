@@ -14,6 +14,8 @@ add_action('init', function () {
         'menu_icon' => 'dashicons-groups',
         'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
         'show_in_rest' => true,
+        'capability_type' => ['team', 'teams'],
+        'map_meta_cap' => true,
     ]);
 
 

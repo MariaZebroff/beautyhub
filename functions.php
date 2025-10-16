@@ -49,7 +49,7 @@ Application::configure()
 |
 */
 
-collect(['setup', 'filters', 'CPT/members'])
+collect(['setup', 'filters', 'CPT/members', 'Roles/beauty-hub-team-member', 'Admin/hide-admin-menus', 'Admin/limit-user-roles'])
     ->each(function ($file) {
         if (! locate_template($file = "app/{$file}.php", true, true)) {
             wp_die(
