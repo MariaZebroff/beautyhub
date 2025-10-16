@@ -153,3 +153,13 @@ add_action('widgets_init', function () {
         'id' => 'sidebar-footer',
     ] + $config);
 });
+
+
+add_action('login_enqueue_scripts', function () {
+    wp_enqueue_style(
+        'sage/login',
+        asset('resources/css/login.css')->uri(),
+        [],
+        null
+    );
+});
