@@ -2,8 +2,18 @@
 @source "../views/";
 @source "../../app/";
 @import './fonts.css';
+@import './components/menu.css';
+@import './utils/typography.css';
 
 @theme {
   --font-brand-primary: 'Gantari', sans-serif;
   --font-brand-secondary: 'Lato', sans-serif;
+}
+
+:root {
+  --primary: #073a25;
+  --secondary: #3a2f2b;
+  --background: #f0e6d7;
+  --black: #000;
+  --white: #fff;
 }
