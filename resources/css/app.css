@@ -1,3 +1,9 @@
 @import 'tailwindcss' theme(static);
 @source "../views/";
 @source "../../app/";
+@import './fonts.css';
+
+@theme {
+  --font-brand-primary: 'Gantari', sans-serif;
+  --font-brand-secondary: 'Lato', sans-serif;
+}

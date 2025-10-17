@@ -10,6 +10,33 @@
       "backgroundImage": true
     },
     "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#073A25",
+          "name": "BH Brand Green"
+        },
+        {
+          "slug": "secondary",
+          "color": "#3A2F2B",
+          "name": "BH Brand Brown"
+        },
+        {
+          "slug": "background",
+          "color": "#F0E6D7",
+          "name": "BH Brand Beige"
+        },
+        {
+          "slug": "white",
+          "color": "#FFFFFF",
+          "name": "BH Brand White"
+        },
+        {
+          "slug": "black",
+          "color": "#000000",
+          "name": "BH Brand Black"
+        }
+      ],
       "custom": false,
       "customDuotone": false,
       "customGradient": false,
