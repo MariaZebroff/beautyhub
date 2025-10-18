@@ -3,6 +3,7 @@
 @source "../../app/";
 @import './fonts.css';
 @import './components/menu.css';
+@import './components/footer.css';
 @import './utils/typography.css';
 
 @theme {
