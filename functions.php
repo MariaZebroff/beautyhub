@@ -116,3 +116,12 @@ function beautyhub_theme_render_options_page() { ?>
         </form>
     </div>
 <?php }
+
+
+function enqueue_team_block_frontend() {
+    if (has_block('beautyhub/team')) {
+        wp_enqueue_script('wp-element');
+        wp_enqueue_script('wp-dom-ready');
+    }
+}
+add_action('wp_enqueue_scripts', 'enqueue_team_block_frontend');

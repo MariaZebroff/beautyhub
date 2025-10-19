@@ -1,4 +1,5 @@
 import.meta.glob(['../images/**', '../fonts/**']);
+import './blocks/team/client';
 
 const toggleMenuButton = document.querySelector('#menu-toggle-button');
 const containerMenu = document.querySelector('.nav-primary-mobile');

@@ -44,6 +44,16 @@ add_filter('admin_head', function () {
     echo Vite::withEntryPoints([
         'resources/js/editor.js',
     ])->toHtml();
+
+    $data = [
+        'siteUrl'     => esc_url(home_url('/')),
+        'restUrl'     => esc_url_raw(rest_url()),
+        'templateUrl' => esc_url(get_template_directory_uri()),
+    ];
+
+    // This will inject window.bh before the JS runs
+    echo '<script>window.bh = ' . wp_json_encode($data) . ';</script>';
+
 });
 
 /**
@@ -163,3 +173,10 @@ add_action('login_enqueue_scripts', function () {
         null
     );
 });
+
+
+
+
+
+
+
