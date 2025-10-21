@@ -3,6 +3,8 @@ import './blocks/button/editor';
 import './blocks/banner/editor';
 import './blocks/header/editor';
 import './blocks/team/editor';
+import './blocks/pingpong-content/editor';
+import './blocks/pingpong-image/editor';
 import './blocks/pingpong/editor';
 
 domReady(() => {

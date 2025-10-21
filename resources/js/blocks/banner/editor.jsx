@@ -35,7 +35,6 @@ registerBlockType('beautyhub/banner', {
     showLogo: { type: 'boolean', default: false },
     logoImageText: { type: 'string' },
     logoImageColor: { type: 'string', default: 'background' },
-    logoImageText: { type: 'string' },
   },
 
   edit: EditComponent,
@@ -50,19 +49,15 @@ registerBlockType('beautyhub/banner', {
             backgroundImage: image ? `url(${image})` : 'none',
           }}
         >
-          {gradient && (
-            <div
-              className="bh-banner-gradient"
-              style={{
-                position: 'absolute',
-                inset: 0,
-                background:
-                  'linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0))',
-                zIndex: 1,
-              }}
-            ></div>
-          )}
-          <div style={{ position: 'relative', zIndex: 2 }}>
+          {gradient && <div className="bh-banner-gradient"></div>}
+          <div className="bh-banner-content">
+            {showLogo && (
+              <h1
+                className={`logo-header-image bh-logo-header-image-${logoImageColor}-color`}
+              >
+                {logoImageText}
+              </h1>
+            )}
             <InnerBlocks.Content />
           </div>
         </div>
@@ -197,19 +192,8 @@ function EditComponent({ setAttributes, attributes }) {
             backgroundImage: image ? `url(${image})` : 'none',
           }}
         >
-          {gradient && (
-            <div
-              className="bh-banner-gradient"
-              style={{
-                position: 'absolute',
-                inset: 0,
-                background:
-                  'linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0))',
-                zIndex: 1,
-              }}
-            ></div>
-          )}
-          <div style={{ position: 'relative', zIndex: 2 }}>
+          {gradient && <div className="bh-banner-gradient"></div>}
+          <div className="bh-banner-content">
             {showLogo && (
               <h1
                 className={`logo-header-image bh-logo-header-image-${logoImageColor}-color`}

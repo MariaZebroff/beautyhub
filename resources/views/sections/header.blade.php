@@ -1,4 +1,5 @@
-<header class="banner  top-0 right-0 left-0 container mx-auto px-4 py-3 md:py-5">
+<header class="banner  top-0 right-0 left-0  ">
+  <div class="container mx-auto px-4 py-3 md:py-4">
   <a class="brand" href="{{ home_url('/') }}">
     {!! $siteName !!}
   </a>
@@ -17,4 +18,5 @@
       {!! wp_nav_menu(['theme_location' => 'primary_navigation', 'menu_class' => 'nav', 'echo' => false]) !!}
     </nav>
   @endif
+  </div>
 </header>

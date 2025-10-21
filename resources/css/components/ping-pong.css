@@ -1,0 +1,38 @@
+.bh-ping-pong {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+}
+.bh-ping-pong > .bh-content-block,
+.bh-ping-pong > .bh-image-block {
+  height: 100%;
+  width: 100%;
+} /* Swap order when imageLeft is true */
+.bh-ping-pong.bh-ping-pong-left {
+  grid-template-columns: 1fr 1fr;
+} /* Normal order (image on right) */
+.bh-ping-pong > .bh-content-block {
+  order: 1;
+}
+.bh-ping-pong > .bh-image-block {
+  order: 2;
+} /* When switched, image comes first */
+.bh-ping-pong.bh-ping-pong-left > .bh-content-block {
+  order: 2;
+}
+.bh-ping-pong.bh-ping-pong-left > .bh-image-block {
+  order: 1;
+}
+@media (max-width: 768px) {
+  .bh-ping-pong {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    height: auto;
+  }
+  .bh-ping-pong > * {
+    order: unset;
+  }
+}
