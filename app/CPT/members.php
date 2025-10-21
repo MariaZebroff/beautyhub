@@ -74,7 +74,8 @@ add_action('rest_api_init', function () {
                 $members[] = [
                     'id'           => $id,
                     'title'        => get_the_title($id),
-                    'thumbnail'    => get_the_post_thumbnail_url($id, 'medium') ?: '',
+                    'permalink'        => get_the_permalink($id),
+                    'thumbnail'    => get_the_post_thumbnail_url($id, 'large') ?: '',
                     'booking_link' => get_post_meta($id, '_booking_link', true),
                 ];
             }

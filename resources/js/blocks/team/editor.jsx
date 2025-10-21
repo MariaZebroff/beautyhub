@@ -22,45 +22,167 @@ registerBlockType('beautyhub/team', {
     const attr = attributes;
     return (
       <div {...useBlockProps.save()}>
-        <div className="data-div" data-attributes={JSON.stringify(attr)}></div>
+        <TeamContent teamMembers={attributes.teamMembers} />
       </div>
     );
   },
 });
 
-function EditComponent(props) {
+function EditComponent({ attributes, setAttributes }) {
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
     const getTeam = async () => {
-      if (!window.bh || !window.bh.restUrl) {
-        console.error('bh.restUrl is not defined');
+      // Reset states
+      setIsLoading(true);
+      setError(null);
+
+      // Validate window.bh configuration
+      if (!window.bh) {
+        const errorMsg = 'Window configuration (bh) is not defined';
+        console.error(errorMsg);
+        setError(errorMsg);
+        setIsLoading(false);
+        return;
+      }
+
+      if (!window.bh.restUrl) {
+        const errorMsg = 'REST API URL is not configured';
+        console.error(errorMsg);
+        setError(errorMsg);
+        setIsLoading(false);
         return;
       }
 
       try {
         const res = await fetch(`${window.bh.restUrl}beautyhub/v1/team`);
+
+        // Check if the response is OK
         if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
+          const errorMsg = `HTTP error! status: ${res.status} ${res.statusText}`;
+          console.error(errorMsg);
+          setError(errorMsg);
+          return;
         }
+
+        // Check if response is JSON
+        const contentType = res.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+          const errorMsg = 'Server returned non-JSON response';
+          console.error(errorMsg);
+          setError(errorMsg);
+          return;
+        }
+
         const data = await res.json();
 
-        props.setAttributes({ teamMembers: data });
+        // Validate the response data structure
+        if (!Array.isArray(data)) {
+          const errorMsg =
+            'Invalid response format: expected array of team members';
+          console.error(errorMsg, data);
+          setError(errorMsg);
+          return;
+        }
+
+        // Success case
+        setAttributes({ teamMembers: data });
+        setError(null);
       } catch (err) {
+        // Handle different types of errors
+        let errorMsg = 'Failed to fetch team members';
+
+        if (err.name === 'TypeError' && err.message.includes('fetch')) {
+          errorMsg = 'Network error: Unable to connect to server';
+        } else if (err.name === 'SyntaxError') {
+          errorMsg = 'Invalid JSON response from server';
+        } else {
+          errorMsg = `Error: ${err.message}`;
+        }
+
         console.error('Failed to fetch team:', err);
+        setError(errorMsg);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     getTeam();
   }, []);
 
+  // Retry function
+  const handleRetry = () => {
+    setError(null);
+    setIsLoading(true);
+    // The useEffect will run again because isLoading changed
+  };
+
   return (
-    <>
-      <div {...useBlockProps()}>
-        {props.attributes.teamMembers.length === 0 ? (
-          <p>No members yet, please add</p>
-        ) : (
-          <TeamContent teamMembers={props.attributes.teamMembers} />
-        )}
-      </div>
-    </>
+    <div {...useBlockProps()}>
+      {/* Loading State */}
+      {isLoading && (
+        <div
+          style={{
+            padding: '20px',
+            textAlign: 'center',
+            border: '1px dashed #ccc',
+            borderRadius: '4px',
+          }}
+        >
+          <p>Loading team members...</p>
+        </div>
+      )}
+
+      {/* Error State */}
+      {error && !isLoading && (
+        <div
+          style={{
+            padding: '16px',
+            backgroundColor: '#fff0f0',
+            border: '1px solid #ffcccc',
+            borderRadius: '4px',
+            color: '#d00',
+          }}
+        >
+          <p>
+            <strong>Error loading team members:</strong> {error}
+          </p>
+          <button
+            onClick={handleRetry}
+            style={{
+              marginTop: '8px',
+              padding: '8px 16px',
+              backgroundColor: '#007cba',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+            }}
+          >
+            Try Again
+          </button>
+        </div>
+      )}
+
+      {/* Success State */}
+      {!isLoading && !error && attributes.teamMembers.length === 0 && (
+        <div
+          style={{
+            padding: '20px',
+            textAlign: 'center',
+            border: '1px dashed #ccc',
+            borderRadius: '4px',
+          }}
+        >
+          <p>No team members found. Please add team members.</p>
+        </div>
+      )}
+
+      {/* Data Loaded Successfully */}
+      {!isLoading && !error && attributes.teamMembers.length > 0 && (
+        <TeamContent teamMembers={attributes.teamMembers} />
+      )}
+    </div>
   );
 }

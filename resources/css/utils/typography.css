@@ -4,4 +4,39 @@ body {
 
 p {
   line-height: 29.6px;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.125rem;
+  font-weight: 300;
+}
+
+.bhheader {
+  font-family: 'Gantari', sans-serif;
+  text-transform: uppercase;
+  font-weight: normal;
+  letter-spacing: 0.25rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+b,
+strong {
+  font-weight: bold;
+}
+
+.headline--large {
+  font-size: 2.5rem;
+}
+
+.headline--small {
+  font-size: 2.25rem;
 }

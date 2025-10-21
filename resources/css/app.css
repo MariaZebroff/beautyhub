@@ -4,7 +4,10 @@
 @import './fonts.css';
 @import './components/menu.css';
 @import './components/footer.css';
+@import './components/button.css';
+@import './components/banner.css';
 @import './utils/typography.css';
+@import './utils/colors.css';
 
 @theme {
   --font-brand-primary: 'Gantari', sans-serif;

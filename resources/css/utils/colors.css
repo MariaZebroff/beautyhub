@@ -1,0 +1,18 @@
+.bh-primary-color {
+  color: var(--primary);
+}
+.bh-secondary-color {
+  color: var(--secondary);
+}
+
+.bh-background-color {
+  color: var(--background);
+}
+
+.bh-black-color {
+  color: var(--black);
+}
+
+.bh-white-color {
+  color: var(--white);
+}

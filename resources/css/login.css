@@ -20,7 +20,10 @@ body {
   text-transform: uppercase;
 }
 
-.wp-core-ui .button-primary {
+.wp-core-ui .button-primary,
+.wp-core-ui .button-primary:focus,
+.wp-core-ui .button-primary:active,
+.wp-core-ui .button-primary:visited {
   background-color: black;
   color: white;
   border-color: black;

@@ -1,5 +1,9 @@
+import MemberCard from './components/MemberCard';
+
 const TeamContent = (props) => {
   const teamMembers = props.teamMembers || [];
+
+  console.log(teamMembers);
 
   if (!Array.isArray(teamMembers)) {
     return <p>Invalid team data</p>;
@@ -7,8 +11,8 @@ const TeamContent = (props) => {
 
   return (
     <ul className="sm:grid sm:grid-cols-2 md:grid-cols-4 sm:gap-4">
-      {teamMembers.map((member, index) => (
-        <li key={member.id || index}>{member?.title || 'Unnamed Member'}</li>
+      {teamMembers.map((member) => (
+        <MemberCard memberInfo={member} key={member.id} />
       ))}
     </ul>
   );

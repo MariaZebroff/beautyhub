@@ -1,2 +1,14 @@
 @import 'tailwindcss';
 @import './fonts.css';
+@import './components/button.css';
+@import './components/banner.css';
+@import './utils/typography.css';
+@import './utils/colors.css';
+
+:root {
+  --primary: #073a25;
+  --secondary: #3a2f2b;
+  --background: #f0e6d7;
+  --black: #000;
+  --white: #fff;
+}

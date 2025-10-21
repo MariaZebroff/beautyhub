@@ -1,0 +1,9 @@
+.bh-banner {
+  background-size: 'cover';
+  background-position: center;
+  min-height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
