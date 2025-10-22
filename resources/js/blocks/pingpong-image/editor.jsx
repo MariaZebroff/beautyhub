@@ -28,6 +28,7 @@ registerBlockType('beautyhub/pingpong-image', {
           alignItems: 'center',
           justifyContent: 'center',
           color: '#999',
+          height: '100%',
         }}
       >
         {!image && !isSelected && (
