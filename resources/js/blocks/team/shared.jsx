@@ -1,4 +1,5 @@
 import MemberCard from './components/MemberCard';
+import styles from './TeamStyles.module.css';
 
 const TeamContent = (props) => {
   const teamMembers = props.teamMembers || [];
@@ -10,7 +11,9 @@ const TeamContent = (props) => {
   }
 
   return (
-    <ul className="sm:grid sm:grid-cols-2 md:grid-cols-4 sm:gap-4">
+    <ul
+      className={`sm:grid sm:grid-cols-2 md:grid-cols-4 sm:gap-4 waittime ${styles.waittime}`}
+    >
       {teamMembers.map((member) => (
         <MemberCard memberInfo={member} key={member.id} />
       ))}

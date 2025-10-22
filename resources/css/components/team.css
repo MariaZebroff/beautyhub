@@ -1,0 +1,200 @@
+/* Team Component Styles - Consistent Aspect Ratios */
+
+/* Base aspect ratio calculation: 290px width / 407px height = 0.7125 */
+/* This means width is 71.25% of height, or height is 140.35% of width */
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  justify-items: center;
+  background: yellow;
+}
+
+.team-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+}
+
+.team-card-image {
+  width: 100%;
+  height: 0;
+  padding-bottom: 140.35%; /* 407/290 * 100% - maintains aspect ratio */
+  position: relative;
+  overflow: hidden;
+}
+
+.team-card-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.team-card:hover .team-card-image img {
+  transform: scale(1.05);
+}
+
+.team-card-content {
+  padding: 1rem 0 0 0;
+  text-align: left;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.team-member-name {
+  font-size: 1.5rem; /* 24px converted to rem */
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.2;
+  color: inherit;
+}
+
+.team-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.team-card-link:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Large screens: 4 cards per row (default) */
+@media (min-width: 1200px) {
+  .team-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* Medium screens: 2 cards per row */
+@media (max-width: 1199px) and (min-width: 768px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* Small screens: 1 card per row */
+@media (max-width: 767px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .team-member-name {
+    font-size: 1.25rem; /* Slightly smaller text on mobile */
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .team-member-name {
+    font-size: 1.125rem;
+  }
+}
+
+/* Editor specific styles - maintains same aspect ratios */
+.editor-styles-wrapper .team-grid,
+.editor-styles-wrapper .wp-block-beautyhub-team .team-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 1.5rem !important;
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+.editor-styles-wrapper .team-card,
+.editor-styles-wrapper .wp-block-beautyhub-team .team-card {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  position: relative !important;
+}
+
+.editor-styles-wrapper .team-card-image {
+  width: 100% !important;
+  height: 0 !important;
+  padding-bottom: 140.35% !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.editor-styles-wrapper .team-card-image img {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+}
+
+.editor-styles-wrapper .team-card-content {
+  padding: 1rem 0 0 0 !important;
+  text-align: left !important;
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+}
+
+.editor-styles-wrapper .team-member-name {
+  font-size: 1.5rem !important;
+  font-weight: 500 !important;
+  margin: 0 !important;
+  line-height: 1.2 !important;
+}
+
+/* Editor responsive styles */
+@media (max-width: 1199px) and (min-width: 768px) {
+  .editor-styles-wrapper .team-grid,
+  .editor-styles-wrapper .wp-block-beautyhub-team .team-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .editor-styles-wrapper .team-grid,
+  .editor-styles-wrapper .wp-block-beautyhub-team .team-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .editor-styles-wrapper .team-member-name {
+    font-size: 1.25rem !important;
+  }
+}
+
+.waittime {
+  background-color: aqua;
+}
