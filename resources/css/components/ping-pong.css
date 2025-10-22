@@ -1,38 +1,95 @@
+/* === FRONTEND === */
 .bh-ping-pong {
-  padding: 0;
-  margin: 0;
-  display: grid;
-  height: 100vh;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 20px;
   width: 100%;
+  box-sizing: border-box;
 }
-.bh-ping-pong > .bh-content-block,
-.bh-ping-pong > .bh-image-block {
-  height: 100%;
-  width: 100%;
-} /* Swap order when imageLeft is true */
+
 .bh-ping-pong.bh-ping-pong-left {
-  grid-template-columns: 1fr 1fr;
-} /* Normal order (image on right) */
-.bh-ping-pong > .bh-content-block {
-  order: 1;
+  flex-direction: row-reverse;
 }
-.bh-ping-pong > .bh-image-block {
-  order: 2;
-} /* When switched, image comes first */
-.bh-ping-pong.bh-ping-pong-left > .bh-content-block {
-  order: 2;
+
+.bh-ping-pong > .wp-block-beautyhub-pingpong-image,
+.bh-ping-pong > .wp-block-beautyhub-pingpong-content {
+  flex: 0 0 50%;
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
 }
-.bh-ping-pong.bh-ping-pong-left > .bh-image-block {
-  order: 1;
+
+.bh-ping-pong .bh-content-block,
+.bh-ping-pong .bh-image-block {
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
 }
-@media (max-width: 768px) {
-  .bh-ping-pong {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
-    height: auto;
-  }
-  .bh-ping-pong > * {
-    order: unset;
-  }
+
+/* === EDITOR === */
+.editor-styles-wrapper .bh-ping-pong,
+.editor-styles-wrapper .bh-ping-pong .block-editor-inner-blocks,
+.editor-styles-wrapper .bh-ping-pong .block-editor-block-list__layout {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: stretch !important;
+  gap: 20px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box;
+}
+
+.editor-styles-wrapper
+  .bh-ping-pong
+  .block-editor-block-list__layout
+  > .block-editor-block-list__block {
+  flex: 0 0 50% !important;
+  max-width: 50% !important;
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Reverse order when imageLeft */
+.editor-styles-wrapper
+  .bh-ping-pong.bh-ping-pong-left
+  .block-editor-inner-blocks,
+.editor-styles-wrapper
+  .bh-ping-pong.bh-ping-pong-left
+  .block-editor-block-list__layout {
+  flex-direction: row-reverse !important;
+}
+
+/* Fill inner blocks height */
+.editor-styles-wrapper .bh-ping-pong .bh-content-block,
+.editor-styles-wrapper .bh-ping-pong .bh-image-block {
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.bh-pingpong-block-bg-color-primary {
+  background-color: var(--primary);
+}
+
+.bh-pingpong-block-bg-color-secondary {
+  background-color: var(--secondary);
+}
+
+.bh-pingpong-block-bg-color-background {
+  background-color: var(--background);
+}
+
+.bh-pingpong-block-bg-color-white {
+  background-color: var(--white);
+}
+
+.bh-pingpong-block-bg-color-black {
+  background-color: var(--black);
+}
+
+.bh-ping-pong-content-block-wrapper {
+  padding-top: 10rem;
+  padding-bottom: 10rem;
 }

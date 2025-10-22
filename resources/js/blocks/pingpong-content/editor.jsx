@@ -2,10 +2,13 @@ import { __ } from '@wordpress/i18n';
 import {
   useBlockProps,
   InnerBlocks,
+  InspectorControls,
   PanelColorSettings,
   useSetting,
 } from '@wordpress/block-editor';
 import { registerBlockType } from '@wordpress/blocks';
+import { PanelBody } from '@wordpress/components';
+import { useSelect } from '@wordpress/data';
 
 registerBlockType('beautyhub/pingpong-content', {
   title: 'Pingpong Content Block',
@@ -13,9 +16,15 @@ registerBlockType('beautyhub/pingpong-content', {
   attributes: {
     color: { type: 'string', default: 'white' },
   },
-  edit: ({ attributes, setAttributes }) => {
+  edit: ({ attributes, setAttributes, clientId, isSelected }) => {
     const { color } = attributes;
     const themeColors = useSetting('color.palette') || [];
+
+    // Count inner blocks to hide placeholder when content exists
+    const innerBlockCount = useSelect(
+      (select) => select('core/block-editor').getBlocks(clientId)?.length || 0,
+      [clientId]
+    );
 
     const getColorValue = (slug) => {
       const colorObj = themeColors.find((c) => c.slug === slug);
@@ -29,38 +38,64 @@ registerBlockType('beautyhub/pingpong-content', {
 
     return (
       <div
-        {...useBlockProps({
-          className: `bh-content-block bh-pingpong-block-bg-color-${color}`,
-        })}
-        style={{ display: 'flex', flexDirection: 'column', width: '100%' }}
+        {...useBlockProps()}
+        className={`bh-content-block bh-pingpong-block-bg-color-${color}`}
+        style={{
+          minHeight: '150px',
+          border: '1px dashed #ccc',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: '#999',
+          position: 'relative',
+        }}
       >
-        <PanelColorSettings
-          title={__('Content Block Color', 'bhpingpong')}
-          colorSettings={[
-            {
-              value: getColorValue(color),
-              onChange: handleColorChange,
-              label: __('Select Content Block Color', 'bhpingpong'),
-            },
-          ]}
-          disableCustomColors
-        />
-        <InnerBlocks
-          allowedBlocks={[
-            'core/paragraph',
-            'core/group',
-            'beautyhub/header',
-            'beautyhub/button',
-          ]}
-        />
+        {/* Show placeholder only if no inner blocks and not selected */}
+        {!isSelected && innerBlockCount === 0 && (
+          <span style={{ position: 'absolute' }}>
+            {__('Pingpong Content Placeholder', 'bhpingpong')}
+          </span>
+        )}
+
+        <InspectorControls>
+          <PanelBody title="Background Block Colors" initialOpen={false}>
+            <PanelColorSettings
+              title={__('Content Block Color', 'bhpingpong')}
+              colorSettings={[
+                {
+                  value: getColorValue(color),
+                  onChange: handleColorChange,
+                  label: __('Select Content Block Color', 'bhpingpong'),
+                },
+              ]}
+              disableCustomColors={true}
+            />
+          </PanelBody>
+        </InspectorControls>
+
+        <div className="px-16 bh-ping-pong-content-block-wrapper">
+          <InnerBlocks
+            allowedBlocks={[
+              'core/paragraph',
+              'core/group',
+              'beautyhub/header',
+              'beautyhub/button',
+            ]}
+          />
+        </div>
       </div>
     );
   },
   save: ({ attributes }) => {
     const { color } = attributes;
     return (
-      <div className={`bh-content-block bh-pingpong-block-bg-color-${color}`}>
-        <InnerBlocks.Content />
+      <div
+        {...useBlockProps.save()}
+        className={`bh-content-block bh-pingpong-block-bg-color-${color}`}
+      >
+        <div className="bh-ping-pong-content-block-wrapper px-16 ">
+          <InnerBlocks.Content />
+        </div>
       </div>
     );
   },

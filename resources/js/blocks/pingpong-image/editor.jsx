@@ -1,14 +1,12 @@
 import { __ } from '@wordpress/i18n';
 import {
   useBlockProps,
-  InnerBlocks,
   MediaUpload,
+  InspectorControls,
   MediaUploadCheck,
-  PanelColorSettings,
-  useSetting,
 } from '@wordpress/block-editor';
 import { registerBlockType } from '@wordpress/blocks';
-import { Button } from '@wordpress/components';
+import { PanelBody, PanelRow, Button } from '@wordpress/components';
 
 registerBlockType('beautyhub/pingpong-image', {
   title: 'Pingpong Image Block',
@@ -16,88 +14,78 @@ registerBlockType('beautyhub/pingpong-image', {
   attributes: {
     image: { type: 'string' },
     imgId: { type: 'number' },
-    color: { type: 'string', default: 'white' },
   },
-  edit: ({ attributes, setAttributes }) => {
-    const { image, imgId, color } = attributes;
-    const themeColors = useSetting('color.palette') || [];
-
-    const getColorValue = (slug) => {
-      const colorObj = themeColors.find((c) => c.slug === slug);
-      return colorObj ? colorObj.color : '';
-    };
-
-    const handleColorChange = (newColor) => {
-      const matched = themeColors.find((c) => c.color === newColor);
-      if (matched) setAttributes({ color: matched.slug });
-    };
+  edit: ({ attributes, setAttributes, isSelected }) => {
+    const { image, imgId } = attributes;
 
     return (
       <div
-        {...useBlockProps({
-          className: `bh-image-block bh-pingpong-block-bg-color-${color}`,
-        })}
-        style={{ display: 'flex', flexDirection: 'column', width: '100%' }}
+        {...useBlockProps()}
+        style={{
+          minHeight: '150px',
+          border: '1px dashed #ccc',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: '#999',
+        }}
       >
-        <PanelColorSettings
-          title={__('Image Block Color', 'bhpingpong')}
-          colorSettings={[
-            {
-              value: getColorValue(color),
-              onChange: handleColorChange,
-              label: __('Select Image Block Color', 'bhpingpong'),
-            },
-          ]}
-          disableCustomColors
-        />
-
-        {image ? (
-          <div
-            className="bh-image-block-bg-image"
-            style={{ backgroundImage: `url(${image})`, height: '100%' }}
-          ></div>
-        ) : (
-          <div
-            className={`bh-pingpong-block-bg-color-${color}`}
-            style={{ height: '100%' }}
-          >
-            <InnerBlocks
-              allowedBlocks={[
-                'core/paragraph',
-                'core/group',
-                'beautyhub/header',
-                'beautyhub/button',
-              ]}
-            />
-          </div>
+        {!image && !isSelected && (
+          <span>{__('Pingpong Image Placeholder', 'bhpingpong')}</span>
         )}
 
-        <MediaUploadCheck>
-          <MediaUpload
-            onSelect={(img) => setAttributes({ image: img.url, imgId: img.id })}
-            value={imgId}
-            render={({ open }) => (
-              <Button variant="secondary" onClick={open}>
-                {image
-                  ? __('Change Image', 'bhpingpong')
-                  : __('Choose Image', 'bhpingpong')}
-              </Button>
-            )}
-          />
-        </MediaUploadCheck>
+        <InspectorControls>
+          <PanelBody title="Image Block Background" initialOpen={true}>
+            <PanelRow>
+              <MediaUploadCheck>
+                <MediaUpload
+                  onSelect={(img) =>
+                    setAttributes({
+                      image: img.url,
+                      imgId: img.id,
+                    })
+                  }
+                  value={imgId}
+                  render={({ open }) => (
+                    <Button variant="secondary" onClick={open}>
+                      {image ? 'Change Image' : 'Choose Image'}
+                    </Button>
+                  )}
+                />
+              </MediaUploadCheck>
+            </PanelRow>
+          </PanelBody>
+        </InspectorControls>
+
+        {image && (
+          <div
+            className="bh-image-block"
+            style={{
+              width: '100%',
+              height: '100%',
+              backgroundImage: `url(${image})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          ></div>
+        )}
       </div>
     );
   },
   save: ({ attributes }) => {
-    const { image, color } = attributes;
-    return image ? (
-      <div
-        className="bh-image-block-bg-image"
-        style={{ backgroundImage: `url(${image})` }}
-      ></div>
-    ) : (
-      <div className={`bh-image-block bh-pingpong-block-bg-color-${color}`}>
-        <InnerBlocks.Content />
+    const { image } = attributes;
+    return (
+      <div {...useBlockProps.save()}>
+        {image && (
+          <div
+            className="bh-image-block"
+            style={{
+              backgroundImage: `url(${image})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          ></div>
+        )}
       </div>
     );
   },
