@@ -53,8 +53,8 @@
 .editor-styles-wrapper
   .bh-ping-pong
   .block-editor-block-list__layout
-  > .block-editor-block-list__block {
-  /* flex: 0 0 50% !important; */
+  > .block-editor-block-list__block:has(.bh-image-block) {
+  flex: 0 0 50% !important;
   max-width: 50% !important;
   min-width: 0 !important;
   display: flex !important;
