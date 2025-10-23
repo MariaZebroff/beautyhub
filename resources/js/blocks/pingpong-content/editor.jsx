@@ -73,7 +73,7 @@ registerBlockType('beautyhub/pingpong-content', {
           </PanelBody>
         </InspectorControls>
 
-        <div className="px-16 bh-ping-pong-content-block-wrapper">
+        <div className="bh-container-tw-faker bh-ping-pong-content-block-wrapper px-4 md:px-16 lg:px-26">
           <InnerBlocks
             allowedBlocks={[
               'core/paragraph',
@@ -93,7 +93,7 @@ registerBlockType('beautyhub/pingpong-content', {
         {...useBlockProps.save()}
         className={`bh-content-block bh-pingpong-block-bg-color-${color}`}
       >
-        <div className="bh-ping-pong-content-block-wrapper px-16 ">
+        <div className="bh-ping-pong-content-block-wrapper bh-container-tw-faker px-4 md:px-16 lg:px-26">
           <InnerBlocks.Content />
         </div>
       </div>

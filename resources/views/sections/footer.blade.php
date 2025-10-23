@@ -7,7 +7,7 @@
     $address = get_option('beautyhub_theme_address');
   ?>
 
-  <div class="sm:flex container mx-auto px-4">
+  <div class="sm:flex px-4 md:px-16 lg:px-26 mx-auto">
     <div class="footer-logo"></div>
     <div class="footer-menu ml-auto">MENU</div>
     <div class="site-info">
