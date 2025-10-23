@@ -11,9 +11,9 @@ const MemberCard = ({ memberInfo }) => {
           />
         </div>
         <div className={styles.teamCardContent}>
-          <h3 className={styles.teamMemberName}>
+          <h4 className={styles.teamMemberName}>
             {memberInfo?.title || 'Unnamed Member'}
-          </h3>
+          </h4>
         </div>
       </a>
     </li>

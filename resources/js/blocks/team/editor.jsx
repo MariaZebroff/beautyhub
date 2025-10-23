@@ -1,6 +1,11 @@
 import { __ } from '@wordpress/i18n';
 
-import { useBlockProps } from '@wordpress/block-editor';
+import {
+  useBlockProps,
+  InspectorControls,
+  PanelColorSettings,
+  useSetting,
+} from '@wordpress/block-editor';
 import { registerBlockType } from '@wordpress/blocks';
 import { PanelBody } from '@wordpress/components';
 import { useState, useEffect } from '@wordpress/element';
@@ -14,6 +19,7 @@ registerBlockType('beautyhub/team', {
   textdomain: 'bhteam',
 
   attributes: {
+    color: { type: 'string', default: 'black' },
     teamMembers: { type: 'array', default: [] },
   },
 
@@ -22,7 +28,10 @@ registerBlockType('beautyhub/team', {
     const attr = attributes;
     return (
       <div {...useBlockProps.save()}>
-        <TeamContent teamMembers={attributes.teamMembers} />
+        <TeamContent
+          teamMembers={attributes.teamMembers}
+          color={attributes.color}
+        />
       </div>
     );
   },
@@ -31,6 +40,16 @@ registerBlockType('beautyhub/team', {
 function EditComponent({ attributes, setAttributes }) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { color } = attributes;
+  const themeColors = useSetting('color.palette') || [];
+  const getColorValue = (slug) => {
+    const colorObj = themeColors.find((c) => c.slug === slug);
+    return colorObj ? colorObj.color : '';
+  };
+
+  const handleColorChange = (newColor) => {
+    setAttributes({ color: newColor });
+  };
 
   useEffect(() => {
     const getTeam = async () => {
@@ -120,6 +139,21 @@ function EditComponent({ attributes, setAttributes }) {
 
   return (
     <div {...useBlockProps()}>
+      <InspectorControls>
+        <PanelBody title="Cards Text Colors" initialOpen={false}>
+          <PanelColorSettings
+            title={__('Cards Text Color', 'bhpingpong')}
+            colorSettings={[
+              {
+                value: getColorValue(color),
+                onChange: handleColorChange,
+                label: __('Select Cards Text Color', 'bhpingpong'),
+              },
+            ]}
+            disableCustomColors={true}
+          />
+        </PanelBody>
+      </InspectorControls>
       {/* Loading State */}
       {isLoading && (
         <div
@@ -181,7 +215,10 @@ function EditComponent({ attributes, setAttributes }) {
 
       {/* Data Loaded Successfully */}
       {!isLoading && !error && attributes.teamMembers.length > 0 && (
-        <TeamContent teamMembers={attributes.teamMembers} />
+        <TeamContent
+          teamMembers={attributes.teamMembers}
+          color={attributes.color}
+        />
       )}
     </div>
   );

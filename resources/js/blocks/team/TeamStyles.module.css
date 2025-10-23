@@ -3,7 +3,7 @@
 /* Base aspect ratio: 290px width / 407px height = 0.7125 */
 /* This means width is 71.25% of height, or height is 140.35% of width */
 
-.waittime {
+.teammemberul {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem 2.5rem; /* 1.5rem horizontal, 2.5rem (40px) vertical */
@@ -56,7 +56,7 @@
 }
 
 .teamCardContent {
-  padding: 1rem 0 0 0;
+  padding: 0.5rem 0 0 0;
   text-align: left;
   flex: 1;
   display: flex;
@@ -89,7 +89,7 @@
 
 /* Large screens: 4 cards per row (default) */
 @media (min-width: 1200px) {
-  .waittime {
+  .teammemberul {
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem 2.5rem; /* 2rem horizontal, 2.5rem (40px) vertical */
   }
@@ -97,32 +97,35 @@
 
 /* Medium screens: 2 cards per row */
 @media (max-width: 1199px) and (min-width: 768px) {
-  .waittime {
+  .teammemberul {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem 2.5rem; /* 1.5rem horizontal, 2.5rem (40px) vertical */
   }
-  
+
   .teamCard {
     max-width: 16rem; /* Smaller max-width for 2-column layout */
+    aspect-ratio: unset; /* Remove aspect ratio restriction */
+    height: auto; /* Allow flexible height */
   }
 }
 
 /* Small screens: 1 card per row */
 @media (max-width: 767px) {
-  .waittime {
+  .teammemberul {
     grid-template-columns: 1fr;
     gap: 1rem 2.5rem; /* 1rem horizontal, 2.5rem (40px) vertical */
   }
-  
+
   .teamCard {
     max-width: 20rem; /* Larger width for mobile */
-    aspect-ratio: 290/350; /* Reduced height ratio for mobile */
+    aspect-ratio: unset; /* Remove aspect ratio restriction */
+    height: auto; /* Allow flexible height */
   }
-  
+
   .teamCardImage {
     padding-bottom: 120.7%; /* 350/290 * 100% - reduced height */
   }
-  
+
   .teamMemberName {
     font-size: 1.25rem; /* Slightly smaller text on mobile */
   }
@@ -136,7 +139,7 @@
 }
 
 /* Editor specific styles - maintains same aspect ratios */
-.editorStylesWrapper .waittime {
+.editorStylesWrapper .teammemberul {
   display: grid !important;
   grid-template-columns: repeat(4, 1fr) !important;
   gap: 1.5rem 2.5rem !important; /* 1.5rem horizontal, 2.5rem (40px) vertical */
@@ -199,31 +202,34 @@
 
 /* Editor responsive styles */
 @media (max-width: 1199px) and (min-width: 768px) {
-  .editorStylesWrapper .waittime {
+  .editorStylesWrapper .teammemberul {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 1.5rem 2.5rem !important; /* 1.5rem horizontal, 2.5rem (40px) vertical */
   }
-  
+
   .editorStylesWrapper .teamCard {
     max-width: 16rem !important; /* Smaller max-width for 2-column layout */
+    aspect-ratio: unset !important; /* Remove aspect ratio restriction */
+    height: auto !important; /* Allow flexible height */
   }
 }
 
 @media (max-width: 767px) {
-  .editorStylesWrapper .waittime {
+  .editorStylesWrapper .teammemberul {
     grid-template-columns: 1fr !important;
     gap: 1rem 2.5rem !important; /* 1rem horizontal, 2.5rem (40px) vertical */
   }
-  
+
   .editorStylesWrapper .teamCard {
     max-width: 20rem !important; /* Larger width for mobile */
-    aspect-ratio: 290/350 !important; /* Reduced height ratio for mobile */
+    aspect-ratio: unset !important; /* Remove aspect ratio restriction */
+    height: auto !important; /* Allow flexible height */
   }
-  
+
   .editorStylesWrapper .teamCardImage {
     padding-bottom: 120.7% !important; /* 350/290 * 100% - reduced height */
   }
-  
+
   .editorStylesWrapper .teamMemberName {
     font-size: 1.25rem !important;
   }
