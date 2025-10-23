@@ -11,13 +11,15 @@ const TeamContent = (props) => {
   }
 
   return (
-    <ul
-      className={`sm:grid sm:grid-cols-2 md:grid-cols-4 sm:gap-4 waittime ${styles.waittime}`}
-    >
-      {teamMembers.map((member) => (
-        <MemberCard memberInfo={member} key={member.id} />
-      ))}
-    </ul>
+    <div className="mb-16">
+      <ul
+        className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 gap-y-10 justify-items-center items-center ${styles.waittime}`}
+      >
+        {teamMembers.map((member) => (
+          <MemberCard memberInfo={member} key={member.id} />
+        ))}
+      </ul>
+    </div>
   );
 };
 

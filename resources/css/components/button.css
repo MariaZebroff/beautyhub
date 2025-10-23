@@ -101,3 +101,41 @@
   color: var(--white);
   background-color: var(--black);
 }
+
+/* === Responsive adjustments === */
+
+/* Tablet (scales by ~0.85x) */
+@media (max-width: 1024px) {
+  .btn--large {
+    font-size: 1.25rem;
+    padding: 0.875rem 2.5rem;
+  }
+  .btn--small {
+    font-size: 1rem;
+    padding: 0.75rem 1.75rem;
+  }
+}
+
+/* Mobile (scales by ~0.7x) */
+@media (max-width: 768px) {
+  .btn--large {
+    font-size: 1.125rem;
+    padding: 0.75rem 2rem;
+  }
+  .btn--small {
+    font-size: 0.95rem;
+    padding: 0.65rem 1.5rem;
+  }
+}
+
+/* Small mobile (scales by ~0.6x but keeps readability) */
+@media (max-width: 480px) {
+  .btn--large {
+    font-size: 1rem;
+    padding: 0.65rem 1.5rem;
+  }
+  .btn--small {
+    font-size: 0.875rem;
+    padding: 0.5rem 1.25rem;
+  }
+}

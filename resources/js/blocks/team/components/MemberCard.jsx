@@ -1,14 +1,21 @@
+import styles from '../TeamStyles.module.css';
+
 const MemberCard = ({ memberInfo }) => {
-  console.log(memberInfo);
   return (
-    <li className="team-card">
-      <a href={memberInfo?.booking_link}>
-        <img className="h-100" src={memberInfo?.thumbnail} />
+    <li className={styles.teamCard}>
+      <a href={memberInfo?.permalink} className={styles.teamCardLink}>
+        <div className={styles.teamCardImage}>
+          <img
+            src={memberInfo?.thumbnail}
+            alt={memberInfo?.title || 'Team member'}
+          />
+        </div>
+        <div className={styles.teamCardContent}>
+          <h3 className={styles.teamMemberName}>
+            {memberInfo?.title || 'Unnamed Member'}
+          </h3>
+        </div>
       </a>
-      <div>{memberInfo?.title || 'Unnamed Member'}</div>
-      <div>
-        <a href={memberInfo?.permalink}>Read More...</a>
-      </div>
     </li>
   );
 };

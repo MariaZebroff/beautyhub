@@ -1,0 +1,230 @@
+/* Team Component Styles - Consistent Aspect Ratios */
+
+/* Base aspect ratio: 290px width / 407px height = 0.7125 */
+/* This means width is 71.25% of height, or height is 140.35% of width */
+
+.waittime {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem 2.5rem; /* 1.5rem horizontal, 2.5rem (40px) vertical */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  justify-items: center;
+  align-items: center;
+}
+
+.teamCard {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 18.125rem; /* 290px */
+  aspect-ratio: 290/407; /* Maintains exact 290:407 ratio */
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  justify-self: center;
+}
+
+.teamCardImage {
+  width: 100%;
+  height: 0;
+  padding-bottom: 140.35%; /* 407/290 * 100% - maintains aspect ratio */
+  position: relative;
+  overflow: hidden;
+}
+
+.teamCardImage img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.teamCard:hover .teamCardImage img {
+  transform: scale(1.05);
+}
+
+.teamCardContent {
+  padding: 1rem 0 0 0;
+  text-align: left;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.teamMemberName {
+  font-size: 1.5rem; /* 24px converted to rem */
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.2;
+  color: inherit;
+}
+
+.teamCardLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.teamCardLink:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Responsive Design - Maintains aspect ratio across all screen sizes */
+
+/* Large screens: 4 cards per row (default) */
+@media (min-width: 1200px) {
+  .waittime {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem 2.5rem; /* 2rem horizontal, 2.5rem (40px) vertical */
+  }
+}
+
+/* Medium screens: 2 cards per row */
+@media (max-width: 1199px) and (min-width: 768px) {
+  .waittime {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem 2.5rem; /* 1.5rem horizontal, 2.5rem (40px) vertical */
+  }
+  
+  .teamCard {
+    max-width: 16rem; /* Smaller max-width for 2-column layout */
+  }
+}
+
+/* Small screens: 1 card per row */
+@media (max-width: 767px) {
+  .waittime {
+    grid-template-columns: 1fr;
+    gap: 1rem 2.5rem; /* 1rem horizontal, 2.5rem (40px) vertical */
+  }
+  
+  .teamCard {
+    max-width: 20rem; /* Larger width for mobile */
+    aspect-ratio: 290/350; /* Reduced height ratio for mobile */
+  }
+  
+  .teamCardImage {
+    padding-bottom: 120.7%; /* 350/290 * 100% - reduced height */
+  }
+  
+  .teamMemberName {
+    font-size: 1.25rem; /* Slightly smaller text on mobile */
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .teamMemberName {
+    font-size: 1.125rem;
+  }
+}
+
+/* Editor specific styles - maintains same aspect ratios */
+.editorStylesWrapper .waittime {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 1.5rem 2.5rem !important; /* 1.5rem horizontal, 2.5rem (40px) vertical */
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100% !important;
+  justify-items: center !important;
+  align-items: center !important;
+}
+
+.editorStylesWrapper .teamCard {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  max-width: 18.125rem !important;
+  aspect-ratio: 290/407 !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  position: relative !important;
+  justify-self: center !important;
+}
+
+.editorStylesWrapper .teamCardImage {
+  width: 100% !important;
+  height: 0 !important;
+  padding-bottom: 140.35% !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.editorStylesWrapper .teamCardImage img {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+}
+
+.editorStylesWrapper .teamCardContent {
+  padding: 1rem 0 0 0 !important;
+  text-align: left !important;
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+}
+
+.editorStylesWrapper .teamMemberName {
+  font-size: 1.5rem !important;
+  font-weight: 500 !important;
+  margin: 0 !important;
+  line-height: 1.2 !important;
+}
+
+/* Editor responsive styles */
+@media (max-width: 1199px) and (min-width: 768px) {
+  .editorStylesWrapper .waittime {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem 2.5rem !important; /* 1.5rem horizontal, 2.5rem (40px) vertical */
+  }
+  
+  .editorStylesWrapper .teamCard {
+    max-width: 16rem !important; /* Smaller max-width for 2-column layout */
+  }
+}
+
+@media (max-width: 767px) {
+  .editorStylesWrapper .waittime {
+    grid-template-columns: 1fr !important;
+    gap: 1rem 2.5rem !important; /* 1rem horizontal, 2.5rem (40px) vertical */
+  }
+  
+  .editorStylesWrapper .teamCard {
+    max-width: 20rem !important; /* Larger width for mobile */
+    aspect-ratio: 290/350 !important; /* Reduced height ratio for mobile */
+  }
+  
+  .editorStylesWrapper .teamCardImage {
+    padding-bottom: 120.7% !important; /* 350/290 * 100% - reduced height */
+  }
+  
+  .editorStylesWrapper .teamMemberName {
+    font-size: 1.25rem !important;
+  }
+}
