@@ -1,3 +1,5 @@
+import styles from './PostStyles.module.css';
+
 const PostCard = ({ post }) => {
   const featuredImage =
     post._embedded &&
@@ -5,7 +7,7 @@ const PostCard = ({ post }) => {
     post._embedded['wp:featuredmedia'][0]?.source_url;
   console.log('POST: ', post);
   return (
-    <li key={post.id} className="border-b border-gray-300 pb-2">
+    <li key={post.id} className={`border-b pb-2 ${styles.card}`}>
       {featuredImage && (
         <img
           src={featuredImage}
