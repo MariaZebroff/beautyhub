@@ -26,3 +26,49 @@
     height: 100% !important;
   }
 }
+
+/* Team member aspect ratio: 290/407 = 0.7125 */
+.blog-thumbnail-team {
+  aspect-ratio: 290/407;
+}
+
+/* Mobile: Full width with aspect ratio */
+.blog-thumbnail-team a {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+.blog-thumbnail-team img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+@media (min-width: 450px) and (max-width: 720px) {
+  .blog-article .blog-container {
+    flex-direction: row !important;
+  }
+  .blog-article .blog-thumbnail-team {
+    width: 30% !important;
+  }
+  .blog-article .blog-content {
+    width: 70% !important;
+  }
+  .blog-article .blog-thumbnail-team a {
+    height: 100% !important;
+  }
+}
+@media (min-width: 721px) {
+  .blog-article .blog-container {
+    flex-direction: row !important;
+  }
+  .blog-article .blog-thumbnail-team {
+    width: 16.666667% !important;
+  }
+  .blog-article .blog-content {
+    width: 83.333333% !important;
+  }
+  .blog-article .blog-thumbnail-team a {
+    height: 100% !important;
+  }
+}

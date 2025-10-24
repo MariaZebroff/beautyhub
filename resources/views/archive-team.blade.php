@@ -8,6 +8,7 @@ $specialty = get_post_meta(get_the_ID(), '_specialty', true);
 
 @section('content')
 
+
   <div class="mx-auto px-4 md:px-16 lg:px-26 min-h-full py-20">
     <!-- Page Header -->
     <div class="mb-8">
@@ -27,7 +28,7 @@ $specialty = get_post_meta(get_the_ID(), '_specialty', true);
             <article class="blog-article bg-white shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
               <div class="blog-container flex flex-col">
                 <!-- Thumbnail Column - Full width on mobile, 1/6 on desktop -->
-                <div class="blog-thumbnail w-full flex-shrink-0">
+                <div class="blog-thumbnail-team w-full flex-shrink-0">
                   @if(has_post_thumbnail())
                     <a href="{{ get_permalink() }}" class="block h-80">
                       {!! get_the_post_thumbnail(null, 'large', ['class' => 'w-full h-full object-cover', 'loading' => 'lazy', 'style' => 'image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges; image-rendering: auto; object-position: center top;']) !!}
@@ -47,7 +48,9 @@ $specialty = get_post_meta(get_the_ID(), '_specialty', true);
                     <!-- Title -->
                     <h2 class="text-xl bhheader headline--xsmall bh-black-color mb-2 hover:opacity-75 transition-opacity">
                       <a href="{{ get_permalink() }}" class="no-underline hover:no-underline" style="text-decoration: none !important;">
-                        {!! get_the_title() !!} <span class=" opacity-50">/ {{ $specialty }}</span>
+                        {!! get_the_title() !!} @if ($specialty)     
+                          <span class=" opacity-50">/ {{ $specialty }}</span>
+                          @endif
                       </a>
                     </h2>
 
@@ -58,9 +61,11 @@ $specialty = get_post_meta(get_the_ID(), '_specialty', true);
                     <a href="{{ get_permalink() }}" class="btn btn--small btn--outlined  btn-black-color" style="margin-left: 0;">
                       Read More
                     </a>
-                    <a href="{{ $booking_link }}" class="btn btn--small btn--generic  btn-black-color" style="margin-left: 0;">
+                    @if ($booking_link)
+                    <a href="{{ $booking_link }}" class="btn btn--small btn--generic  btn-primary-color" style="margin-left: 0;">
                       Book Now
                     </a>
+                      @endif
                   </div>
                 </div>
               </div>

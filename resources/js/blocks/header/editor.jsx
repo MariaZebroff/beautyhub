@@ -34,7 +34,7 @@ registerBlockType('beautyhub/header', {
       <RichText.Content
         value={text}
         tagName={tagName}
-        className={`bhheader headline--${size} bh-${color}-color text-center sm:text-${align}`}
+        className={`bhheader headline--${size} bh-${color}-color text-${align}`}
       />
     );
   },
