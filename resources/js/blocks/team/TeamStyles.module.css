@@ -66,6 +66,72 @@
   transform: scale(1.05);
 }
 
+/* Hover overlay - appears on hover */
+.teamCardOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.teamCard:hover .teamCardOverlay {
+  opacity: 1;
+}
+
+.teamCardOverlayText {
+  color: white;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 2.25rem; /* 36px converted to rem */
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* Bottom block - appears on non-hover screens (mobile/touch devices) */
+.teamCardBottomBlock {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5.9375rem; /* 95px converted to rem */
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+/* Hide bottom block on hover-capable devices */
+@media (hover: hover) {
+  .teamCardBottomBlock {
+    display: none;
+  }
+}
+
+/* Show bottom block on touch devices */
+@media (hover: none) {
+  .teamCardBottomBlock {
+    display: flex;
+  }
+}
+
+.teamCardBottomText {
+  color: white;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 2.25rem; /* 36px converted to rem */
+  text-align: center;
+  text-transform: uppercase;
+}
+
 .teamCardContent {
   padding: 1rem 0 0 0;
   text-align: left;
@@ -216,6 +282,71 @@
   object-fit: cover !important;
   object-position: center !important;
   display: block !important;
+}
+
+/* Editor hover overlay styles */
+.editorStylesWrapper .teamCardOverlay {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: rgba(0, 0, 0, 0.7) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+  z-index: 2 !important;
+}
+
+.editorStylesWrapper .teamCard:hover .teamCardOverlay {
+  opacity: 1 !important;
+}
+
+.editorStylesWrapper .teamCardOverlayText {
+  color: white !important;
+  font-family: 'Lato', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 2.25rem !important; /* 36px converted to rem */
+  text-align: center !important;
+  text-transform: uppercase !important;
+}
+
+/* Editor bottom block styles */
+.editorStylesWrapper .teamCardBottomBlock {
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 5.9375rem !important; /* 95px converted to rem */
+  background-color: rgba(0, 0, 0, 0.7) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 2 !important;
+}
+
+.editorStylesWrapper .teamCardBottomText {
+  color: white !important;
+  font-family: 'Lato', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 2.25rem !important; /* 36px converted to rem */
+  text-align: center !important;
+  text-transform: uppercase !important;
+}
+
+/* Editor responsive behavior */
+@media (hover: hover) {
+  .editorStylesWrapper .teamCardBottomBlock {
+    display: none !important;
+  }
+}
+
+@media (hover: none) {
+  .editorStylesWrapper .teamCardBottomBlock {
+    display: flex !important;
+  }
 }
 
 .editorStylesWrapper .teamCardContent {

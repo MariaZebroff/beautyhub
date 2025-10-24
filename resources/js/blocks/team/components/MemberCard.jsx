@@ -12,6 +12,12 @@ const MemberCard = ({ memberInfo }) => {
             alt={memberInfo?.title || 'Team member'}
             loading="lazy"
           />
+          <div className={styles.teamCardOverlay}>
+            <span className={styles.teamCardOverlayText}>book now</span>
+          </div>
+          <div className={styles.teamCardBottomBlock}>
+            <span className={styles.teamCardBottomText}>book now</span>
+          </div>
         </div>
         <div className={styles.teamCardContent}>
           <h4 className={styles.teamMemberName}>
