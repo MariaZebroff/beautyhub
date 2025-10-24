@@ -9,7 +9,7 @@ add_action('init', function () {
             'singular_name' => __('Team Member', 'beautyhub'),
         ],
         'public' => true,
-        'has_archive' => false,
+        'has_archive' => true,
         'rewrite' => ['slug' => 'team'],
         'menu_icon' => 'dashicons-groups',
         'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
@@ -113,3 +113,16 @@ add_action('rest_api_init', function () {
         'permission_callback' => '__return_true',
     ]);
 });
+
+// Flush rewrite rules on theme activation
+add_action('after_switch_theme', function() {
+    flush_rewrite_rules();
+});
+
+// Force flush rewrite rules for team CPT
+add_action('init', function() {
+    if (get_option('team_rewrite_flushed') !== '1') {
+        flush_rewrite_rules();
+        update_option('team_rewrite_flushed', '1');
+    }
+}, 999);

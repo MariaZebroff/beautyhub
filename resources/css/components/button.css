@@ -28,24 +28,29 @@
 
 .btn--generic.btn-primary-color {
   background-color: var(--primary);
+  border: 1px solid var(--primary);
 }
 
 .btn--generic.btn-secondary-color {
   background-color: var(--secondary);
+  border: 1px solid var(--secondary);
 }
 
 .btn--generic.btn-background-color {
   color: var(--secondary);
   background-color: var(--background);
+  border: 1px solid var(--background);
 }
 
 .btn--generic.btn-white-color {
   color: var(--black);
   background-color: var(--white);
+  border: 1px solid var(--white);
 }
 
 .btn--generic.btn-black-color {
   background-color: var(--black);
+  border: 1px solid var(--black);
 }
 
 .btn--outlined {
