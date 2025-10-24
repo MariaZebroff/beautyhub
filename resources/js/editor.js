@@ -1,5 +1,6 @@
 import domReady from '@wordpress/dom-ready';
 import './blocks/button/editor';
+import './blocks/post/editor';
 import './blocks/banner/editor';
 import './blocks/container/editor';
 import './blocks/header/editor';
