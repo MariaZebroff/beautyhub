@@ -172,6 +172,33 @@ strong {
 
 .headline--xsmall {
   font-size: 1.6rem;
-  font-weight: bold;
   letter-spacing: 0.1rem;
+}
+
+/* Tablet (down from desktop) */
+@media (max-width: 1024px) {
+  .headline--xsmall {
+    font-size: 1.5rem; /* ~6% smaller */
+  }
+}
+
+/* Mobile (down from tablet) */
+@media (max-width: 768px) {
+  .headline--xsmall {
+    font-size: 1.375rem; /* ~14% smaller */
+  }
+}
+
+/* Small mobile (tight screens) */
+@media (max-width: 480px) {
+  .headline--xsmall {
+    font-size: 1.25rem; /* ~22% smaller */
+  }
+}
+
+/* Extra small mobile */
+@media (max-width: 450px) {
+  .headline--xsmall {
+    font-size: 1.1rem; /* ~30% smaller */
+  }
 }

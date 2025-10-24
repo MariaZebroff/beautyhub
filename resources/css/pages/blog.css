@@ -1,0 +1,28 @@
+@media (min-width: 450px) and (max-width: 720px) {
+  .blog-article .blog-container {
+    flex-direction: row !important;
+  }
+  .blog-article .blog-thumbnail {
+    width: 30% !important;
+  }
+  .blog-article .blog-content {
+    width: 70% !important;
+  }
+  .blog-article .blog-thumbnail a {
+    height: 100% !important;
+  }
+}
+@media (min-width: 721px) {
+  .blog-article .blog-container {
+    flex-direction: row !important;
+  }
+  .blog-article .blog-thumbnail {
+    width: 16.666667% !important;
+  }
+  .blog-article .blog-content {
+    width: 83.333333% !important;
+  }
+  .blog-article .blog-thumbnail a {
+    height: 100% !important;
+  }
+}

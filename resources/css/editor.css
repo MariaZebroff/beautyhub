@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import './fonts.css';
+@import './pages/blog.css';
 @import './components/button.css';
 @import './components/banner.css';
 @import './components/container.css';

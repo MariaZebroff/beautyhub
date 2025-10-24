@@ -1,4 +1,4 @@
-<footer class="content-info">
+<footer class="content-info" style="border-top: 1px solid rgba(0,0,0,0.2);">
   {{-- @php(dynamic_sidebar('sidebar-footer')) --}}
   <?php
     $phone = get_option('beautyhub_theme_phone');

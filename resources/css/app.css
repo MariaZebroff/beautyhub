@@ -2,6 +2,7 @@
 @source "../views/";
 @source "../../app/";
 @import './fonts.css';
+@import './pages/blog.css';
 @import './components/menu.css';
 @import './components/footer.css';
 @import './components/button.css';
