@@ -27,7 +27,7 @@
         <aside class="sidebar">
           @yield('sidebar')
         </aside>
-      @endif
+      @endif 
 
       @include('sections.footer')
     </div>

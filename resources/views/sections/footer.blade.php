@@ -1,5 +1,5 @@
 <footer class="content-info">
-  @php(dynamic_sidebar('sidebar-footer'))
+  {{-- @php(dynamic_sidebar('sidebar-footer')) --}}
   <?php
     $phone = get_option('beautyhub_theme_phone');
     $instagram = get_option('beautyhub_theme_instagram');

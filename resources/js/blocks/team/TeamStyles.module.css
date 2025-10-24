@@ -20,7 +20,7 @@
   flex-direction: column;
   width: 100%;
   max-width: 18.125rem; /* 290px */
-  aspect-ratio: 290/407; /* Maintains exact 290:407 ratio */
+  /* Remove fixed aspect-ratio to allow flexible height */
   background: transparent;
   border: none;
   padding: 0;
@@ -121,7 +121,16 @@
   }
 
   .teamCard {
-    max-width: 16rem; /* Smaller max-width for 2-column layout */
+    max-width: 20rem; /* Reasonable width for 2-column layout */
+  }
+
+  .teamCardImage {
+    padding-bottom: 140.35%; /* Keep original aspect ratio 407/290 */
+  }
+
+  .teamCardContent {
+    padding: 1.5rem 0 0 0; /* More padding for text */
+    flex: 1; /* Allow content to expand */
   }
 }
 
@@ -133,16 +142,26 @@
   }
 
   .teamCard {
-    max-width: 20rem; /* Larger width for mobile */
-    aspect-ratio: 290/350; /* Reduced height ratio for mobile */
+    max-width: 22rem; /* Reasonable width for mobile */
   }
 
   .teamCardImage {
-    padding-bottom: 120.7%; /* 350/290 * 100% - reduced height */
+    padding-bottom: 140.35%; /* Keep original aspect ratio 407/290 */
+  }
+
+  .teamCardContent {
+    padding: 1.5rem 0 0 0; /* More padding for text */
+    flex: 1; /* Allow content to expand */
   }
 
   .teamMemberName {
     font-size: 1.25rem; /* Slightly smaller text on mobile */
+    line-height: 1.3; /* Better line height */
+  }
+
+  .teamMemberSpaciality {
+    font-size: 0.9rem; /* Smaller specialty text on mobile */
+    line-height: 1.4; /* Better line height */
   }
 }
 
@@ -223,7 +242,16 @@
   }
 
   .editorStylesWrapper .teamCard {
-    max-width: 16rem !important; /* Smaller max-width for 2-column layout */
+    max-width: 20rem !important; /* Reasonable width for 2-column layout */
+  }
+
+  .editorStylesWrapper .teamCardImage {
+    padding-bottom: 140.35% !important; /* Keep original aspect ratio 407/290 */
+  }
+
+  .editorStylesWrapper .teamCardContent {
+    padding: 1.5rem 0 0 0 !important; /* More padding for text */
+    flex: 1 !important; /* Allow content to expand */
   }
 }
 
@@ -234,15 +262,25 @@
   }
 
   .editorStylesWrapper .teamCard {
-    max-width: 20rem !important; /* Larger width for mobile */
-    aspect-ratio: 290/350 !important; /* Reduced height ratio for mobile */
+    max-width: 22rem !important; /* Reasonable width for mobile */
   }
 
   .editorStylesWrapper .teamCardImage {
-    padding-bottom: 120.7% !important; /* 350/290 * 100% - reduced height */
+    padding-bottom: 140.35% !important; /* Keep original aspect ratio 407/290 */
+  }
+
+  .editorStylesWrapper .teamCardContent {
+    padding: 1.5rem 0 0 0 !important; /* More padding for text */
+    flex: 1 !important; /* Allow content to expand */
   }
 
   .editorStylesWrapper .teamMemberName {
-    font-size: 1.25rem !important;
+    font-size: 1.25rem !important; /* Slightly smaller text on mobile */
+    line-height: 1.3 !important; /* Better line height */
+  }
+
+  .editorStylesWrapper .teamMemberSpaciality {
+    font-size: 0.9rem !important; /* Smaller specialty text on mobile */
+    line-height: 1.4 !important; /* Better line height */
   }
 }

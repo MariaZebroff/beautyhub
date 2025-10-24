@@ -121,3 +121,4 @@ function beautyhub_theme_render_options_page() { ?>
 add_filter('wp_editor_set_quality', function() {
     return 100;
 });
+

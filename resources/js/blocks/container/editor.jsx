@@ -112,6 +112,21 @@ function EditComponent({ setAttributes, attributes }) {
                       <Button variant="secondary" onClick={open}>
                         {image ? 'Change Image' : 'Choose Image'}
                       </Button>
+                      {image && (
+                        <Button
+                          variant="link"
+                          isDestructive
+                          onClick={() =>
+                            setAttributes({
+                              image: undefined,
+                              imgId: undefined,
+                            })
+                          }
+                          style={{ marginLeft: '10px' }}
+                        >
+                          Delete Image
+                        </Button>
+                      )}
                     </div>
                   )}
                 />

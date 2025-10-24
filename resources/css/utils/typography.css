@@ -23,9 +23,20 @@ p {
 .text-right {
   text-align: right;
 }
+@media (max-width: 639px) {
+  .text-right {
+    text-align: center;
+  }
+}
 
 .text-left {
   text-align: left;
+}
+
+@media (max-width: 639px) {
+  .text-left {
+    text-align: center;
+  }
 }
 
 b,
@@ -122,5 +133,39 @@ strong {
 
   .headline--small {
     font-size: 1.1rem; /* ~24px */
+  }
+}
+
+.specialty {
+  text-transform: capitalize;
+  font-size: 2rem; /* base desktop size */
+  font-weight: 300;
+}
+
+/* Tablet (down from desktop) */
+@media (max-width: 1024px) {
+  .specialty {
+    font-size: 1.875rem; /* ~6% smaller than 2rem, same ratio as your headline scaling */
+  }
+}
+
+/* Mobile (down from tablet) */
+@media (max-width: 768px) {
+  .specialty {
+    font-size: 1.75rem; /* ~12% smaller than 2rem */
+  }
+}
+
+/* Small mobile (tight screens) */
+@media (max-width: 480px) {
+  .specialty {
+    font-size: 1.5rem; /* ~25% smaller than 2rem */
+  }
+}
+
+/* Extra small mobile */
+@media (max-width: 450px) {
+  .specialty {
+    font-size: 1.25rem; /* ~37% smaller than 2rem */
   }
 }
