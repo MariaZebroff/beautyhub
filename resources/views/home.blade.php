@@ -1,6 +1,60 @@
 @extends('layouts.app')
 
 @section('content')
+  <style>
+    /* Force consistent image sizing for blog thumbnails */
+    .blog-thumbnail {
+      width: 100%;
+      height: 250px; /* Increased height */
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .blog-thumbnail a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    
+    .blog-thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover !important;
+      object-position: center !important;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    
+    /* Responsive behavior - More space for images, less for content */
+    @media (min-width: 450px) and (max-width: 720px) {
+      .blog-article .blog-container {
+        flex-direction: row !important;
+      }
+      .blog-article .blog-thumbnail {
+        width: 40% !important; /* Increased from 30% */
+        height: 250px !important;
+      }
+      .blog-article .blog-content {
+        width: 60% !important; /* Decreased from 70% */
+      }
+    }
+    @media (min-width: 721px) {
+      .blog-article .blog-container {
+        flex-direction: row !important;
+      }
+      .blog-article .blog-thumbnail {
+        width: 25% !important; /* Increased from 16.67% */
+        height: 250px !important;
+      }
+      .blog-article .blog-content {
+        width: 75% !important; /* Decreased from 83.33% */
+      }
+    }
+  </style>
 
   <div class="mx-auto px-4 md:px-16 lg:px-26 min-h-full py-20">
     <!-- Page Header -->
@@ -23,11 +77,11 @@
                 <!-- Thumbnail Column - Full width on mobile, 1/6 on desktop -->
                 <div class="blog-thumbnail w-full flex-shrink-0">
                   @if(has_post_thumbnail())
-                    <a href="{{ get_permalink() }}" class="block h-80">
-                      {!! get_the_post_thumbnail(null, 'full', ['class' => 'w-full h-full object-cover', 'loading' => 'lazy', 'style' => 'image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges; image-rendering: auto; object-position: center top;']) !!}
+                    <a href="{{ get_permalink() }}">
+                      {!! get_the_post_thumbnail(null, 'large', ['class' => 'w-full h-full object-cover', 'loading' => 'lazy']) !!}
                     </a>
                   @else
-                    <div class="w-full h-80 bg-gray-200 flex items-center justify-center">
+                    <div class="w-full h-full bg-gray-200 flex items-center justify-center">
                       <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                       </svg>
