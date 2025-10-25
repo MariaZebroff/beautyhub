@@ -18,3 +18,8 @@
 .bhmr-3 {
   margin-right: 3rem;
 }
+
+.max-width-840 {
+  max-width: 840px;
+  margin: 0 auto;
+}

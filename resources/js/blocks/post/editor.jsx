@@ -11,6 +11,7 @@ import apiFetch from '@wordpress/api-fetch';
 import { useEffect, useState } from '@wordpress/element';
 
 import PostCard from './shared';
+import styles from './PostStyles.module.css';
 
 registerBlockType('beautyhub/lastposts', {
   title: 'Beauty Hub Brand Posts',
@@ -28,21 +29,23 @@ registerBlockType('beautyhub/lastposts', {
   edit: EditComponent,
   save: ({ attributes }) => {
     const { latestPosts, color, colorbg } = attributes;
-    // Nothing to save since it’s dynamic
+    // Nothing to save since it's dynamic
     return (
       <div {...useBlockProps.save()}>
-        <ul className="py-20 md:py-20 lg:py-26  mx-auto">
-          {latestPosts.map((post) => (
-            <PostCard post={post} />
-          ))}
-        </ul>
+        <div className="py-20 md:py-20 lg:py-26 mx-auto">
+          <ul className={` ${styles.postsGrid}`}>
+            {latestPosts.map((post) => (
+              <PostCard post={post} color={color} colorbg={colorbg} />
+            ))}
+          </ul>
+        </div>
       </div>
     );
   },
 });
 
 function EditComponent({ attributes, setAttributes }) {
-  const { color } = attributes;
+  const { color, colorbg } = attributes;
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -54,6 +57,10 @@ function EditComponent({ attributes, setAttributes }) {
 
   const handleColorChange = (newColor) => {
     setAttributes({ color: newColor });
+  };
+
+  const handleColorBgChange = (newColor) => {
+    setAttributes({ colorbg: newColor });
   };
 
   // 🔹 Fetch 3 latest posts
@@ -72,15 +79,29 @@ function EditComponent({ attributes, setAttributes }) {
       <InspectorControls>
         <PanelBody title="Cards Text Colors" initialOpen={false}>
           <PanelColorSettings
-            title={__('Cards Text Color', 'bhpingpong')}
+            title={__('Cards Text Color', 'bhposts')}
             colorSettings={[
               {
-                value: getColorValue(color),
+                value: color, // ✅ use the actual color value
                 onChange: handleColorChange,
-                label: __('Select Cards Text Color', 'bhpingpong'),
+                label: __('Select Cards Text Color', 'bhposts'),
               },
             ]}
-            disableCustomColors={true}
+            disableCustomColors={false} // ✅ allow custom colors
+          />
+        </PanelBody>
+
+        <PanelBody title="Cards Background Colors" initialOpen={false}>
+          <PanelColorSettings
+            title={__('Cards Background Color', 'bhposts')}
+            colorSettings={[
+              {
+                value: colorbg, // ✅ correct color value
+                onChange: handleColorBgChange,
+                label: __('Select Cards Background Color', 'bhposts'),
+              },
+            ]}
+            disableCustomColors={false}
           />
         </PanelBody>
       </InspectorControls>
@@ -91,11 +112,13 @@ function EditComponent({ attributes, setAttributes }) {
           <Spinner /> Loading posts...
         </div>
       ) : posts.length ? (
-        <ul className="py-20 md:py-20 lg:py-26  mx-auto">
-          {posts.map((post) => (
-            <PostCard post={post} />
-          ))}
-        </ul>
+        <div className="py-20 md:py-20 lg:py-26 mx-auto">
+          <ul className={`${styles.postsGrid}`}>
+            {posts.map((post) => (
+              <PostCard post={post} color={color} colorbg={colorbg} />
+            ))}
+          </ul>
+        </div>
       ) : (
         <p>No posts found.</p>
       )}

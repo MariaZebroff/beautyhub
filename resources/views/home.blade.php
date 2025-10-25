@@ -24,7 +24,7 @@
                 <div class="blog-thumbnail w-full flex-shrink-0">
                   @if(has_post_thumbnail())
                     <a href="{{ get_permalink() }}" class="block h-80">
-                      {!! get_the_post_thumbnail(null, 'large', ['class' => 'w-full h-full object-cover', 'loading' => 'lazy', 'style' => 'image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges; image-rendering: auto; object-position: center top;']) !!}
+                      {!! get_the_post_thumbnail(null, 'full', ['class' => 'w-full h-full object-cover', 'loading' => 'lazy', 'style' => 'image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges; image-rendering: auto; object-position: center top;']) !!}
                     </a>
                   @else
                     <div class="w-full h-80 bg-gray-200 flex items-center justify-center">
@@ -68,7 +68,7 @@
 
                     <!-- Excerpt -->
                     <div class="text-gray-600 mb-4">
-                      @php(the_excerpt())
+                      <p>{{ wp_trim_words(get_the_excerpt(), 20, '...') }}</p>
                     </div>
                   </div>
 
