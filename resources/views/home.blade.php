@@ -1,60 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-  <style>
-    /* Force consistent image sizing for blog thumbnails */
-    .blog-thumbnail {
-      width: 100%;
-      height: 250px; /* Increased height */
-      overflow: hidden;
-      position: relative;
-    }
-    
-    .blog-thumbnail a {
-      display: block;
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-    
-    .blog-thumbnail img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover !important;
-      object-position: center !important;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-    
-    /* Responsive behavior - More space for images, less for content */
-    @media (min-width: 450px) and (max-width: 720px) {
-      .blog-article .blog-container {
-        flex-direction: row !important;
-      }
-      .blog-article .blog-thumbnail {
-        width: 40% !important; /* Increased from 30% */
-        height: 250px !important;
-      }
-      .blog-article .blog-content {
-        width: 60% !important; /* Decreased from 70% */
-      }
-    }
-    @media (min-width: 721px) {
-      .blog-article .blog-container {
-        flex-direction: row !important;
-      }
-      .blog-article .blog-thumbnail {
-        width: 25% !important; /* Increased from 16.67% */
-        height: 250px !important;
-      }
-      .blog-article .blog-content {
-        width: 75% !important; /* Decreased from 83.33% */
-      }
-    }
-  </style>
 
   <div class="mx-auto px-4 md:px-16 lg:px-26 min-h-full py-20">
     <!-- Page Header -->

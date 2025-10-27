@@ -74,7 +74,7 @@ strong {
   }
 
   .headline--small {
-    font-size: 2rem; /* ~32px */
+    font-size: 1.75rem; /* ~32px */
   }
 }
 
@@ -94,11 +94,11 @@ strong {
   }
 
   .headline--large {
-    font-size: 2rem; /* 32px */
+    font-size: 1.75rem; /* 32px */
   }
 
   .headline--small {
-    font-size: 1.75rem; /* 28px */
+    font-size: 1.65rem; /* 28px */
   }
 }
 
@@ -118,7 +118,7 @@ strong {
   }
 
   .headline--large {
-    font-size: 1.75rem; /* ~28px */
+    font-size: 1.65rem; /* ~28px */
   }
 
   .headline--small {

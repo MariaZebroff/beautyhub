@@ -4,10 +4,10 @@ import './blocks/post/PostStyles.module.css';
 
 const toggleMenuButton = document.querySelector('#menu-toggle-button');
 const containerMenu = document.querySelector('.nav-primary-mobile');
-const header = document.querySelector('.banner');
+const header = document.querySelector('#headbanner');
 
 toggleMenuButton.addEventListener('click', () => {
-  containerMenu.classList.toggle('active');
+  header.classList.toggle('active');
 });
 
 function updateHeaderBackground() {
